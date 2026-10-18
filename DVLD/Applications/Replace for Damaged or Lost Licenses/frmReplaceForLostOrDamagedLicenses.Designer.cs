@@ -72,7 +72,7 @@
             this.linkShowNewLicenseInfo.AutoSize = true;
             this.linkShowNewLicenseInfo.Enabled = false;
             this.linkShowNewLicenseInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkShowNewLicenseInfo.Location = new System.Drawing.Point(217, 633);
+            this.linkShowNewLicenseInfo.Location = new System.Drawing.Point(322, 654);
             this.linkShowNewLicenseInfo.Name = "linkShowNewLicenseInfo";
             this.linkShowNewLicenseInfo.Size = new System.Drawing.Size(197, 22);
             this.linkShowNewLicenseInfo.TabIndex = 207;
@@ -87,7 +87,7 @@
             this.btnReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReplace.Image = global::DVLD.Properties.Resources.Renew_Driving_License_32;
             this.btnReplace.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReplace.Location = new System.Drawing.Point(740, 636);
+            this.btnReplace.Location = new System.Drawing.Point(890, 649);
             this.btnReplace.Name = "btnReplace";
             this.btnReplace.Size = new System.Drawing.Size(173, 36);
             this.btnReplace.TabIndex = 205;
@@ -102,7 +102,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(543, 636);
+            this.btnClose.Location = new System.Drawing.Point(693, 649);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(173, 36);
             this.btnClose.TabIndex = 204;
@@ -114,7 +114,7 @@
             // 
             this.linkShowLicensesHistory.AutoSize = true;
             this.linkShowLicensesHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkShowLicensesHistory.Location = new System.Drawing.Point(12, 633);
+            this.linkShowLicensesHistory.Location = new System.Drawing.Point(117, 654);
             this.linkShowLicensesHistory.Name = "linkShowLicensesHistory";
             this.linkShowLicensesHistory.Size = new System.Drawing.Size(192, 22);
             this.linkShowLicensesHistory.TabIndex = 206;
@@ -127,7 +127,7 @@
             this.ctrlDriverLicenseInfoWithFilter1.FilterEnabled = true;
             this.ctrlDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(12, 50);
             this.ctrlDriverLicenseInfoWithFilter1.Name = "ctrlDriverLicenseInfoWithFilter1";
-            this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(917, 475);
+            this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(1064, 475);
             this.ctrlDriverLicenseInfoWithFilter1.TabIndex = 202;
             this.ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += new System.Action<int>(this.ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected);
             // 
@@ -138,7 +138,7 @@
             this.label1.ForeColor = System.Drawing.Color.Maroon;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(934, 47);
+            this.label1.Size = new System.Drawing.Size(1086, 47);
             this.label1.TabIndex = 201;
             this.label1.Text = "Renew License Application";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -358,7 +358,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(17, 498);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(896, 132);
+            this.groupBox1.Size = new System.Drawing.Size(1059, 132);
             this.groupBox1.TabIndex = 203;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application info for License Replacement";
@@ -407,7 +407,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(934, 697);
+            this.ClientSize = new System.Drawing.Size(1086, 697);
             this.Controls.Add(this.gbReplacementFor);
             this.Controls.Add(this.linkShowNewLicenseInfo);
             this.Controls.Add(this.btnReplace);

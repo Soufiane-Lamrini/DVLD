@@ -142,7 +142,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(432, 45);
+            this.label9.Location = new System.Drawing.Point(654, 45);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(106, 20);
             this.label9.TabIndex = 154;
@@ -152,7 +152,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(432, 95);
+            this.label8.Location = new System.Drawing.Point(654, 95);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(109, 20);
             this.label8.TabIndex = 155;
@@ -161,7 +161,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox5.Location = new System.Drawing.Point(556, 39);
+            this.pictureBox5.Location = new System.Drawing.Point(778, 39);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(31, 26);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -171,7 +171,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::DVLD.Properties.Resources.Calendar_32;
-            this.pictureBox4.Location = new System.Drawing.Point(556, 89);
+            this.pictureBox4.Location = new System.Drawing.Point(778, 89);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(31, 26);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -182,7 +182,7 @@
             // 
             this.lblLicenseID.AutoSize = true;
             this.lblLicenseID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLicenseID.Location = new System.Drawing.Point(606, 45);
+            this.lblLicenseID.Location = new System.Drawing.Point(828, 45);
             this.lblLicenseID.Name = "lblLicenseID";
             this.lblLicenseID.Size = new System.Drawing.Size(61, 20);
             this.lblLicenseID.TabIndex = 160;
@@ -192,7 +192,7 @@
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(606, 95);
+            this.lblUserName.Location = new System.Drawing.Point(828, 95);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(61, 20);
             this.lblUserName.TabIndex = 161;
@@ -218,7 +218,7 @@
             this.gbDetainInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDetainInfo.Location = new System.Drawing.Point(12, 493);
             this.gbDetainInfo.Name = "gbDetainInfo";
-            this.gbDetainInfo.Size = new System.Drawing.Size(900, 194);
+            this.gbDetainInfo.Size = new System.Drawing.Size(1050, 194);
             this.gbDetainInfo.TabIndex = 1;
             this.gbDetainInfo.TabStop = false;
             this.gbDetainInfo.Text = "Detain Info";
@@ -241,7 +241,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Image = global::DVLD.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(656, 695);
+            this.btnClose.Location = new System.Drawing.Point(802, 698);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(126, 37);
@@ -269,7 +269,7 @@
             this.btnDetain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDetain.Image = global::DVLD.Properties.Resources.International_32;
             this.btnDetain.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDetain.Location = new System.Drawing.Point(790, 695);
+            this.btnDetain.Location = new System.Drawing.Point(936, 698);
             this.btnDetain.Name = "btnDetain";
             this.btnDetain.Size = new System.Drawing.Size(126, 37);
             this.btnDetain.TabIndex = 186;
@@ -296,7 +296,7 @@
             this.ctrlDriverLicenseInfoWithFilter1.FilterEnabled = true;
             this.ctrlDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(12, 12);
             this.ctrlDriverLicenseInfoWithFilter1.Name = "ctrlDriverLicenseInfoWithFilter1";
-            this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(917, 475);
+            this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(1050, 475);
             this.ctrlDriverLicenseInfoWithFilter1.TabIndex = 0;
             this.ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += new System.Action<int>(this.ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected_1);
             // 
@@ -305,7 +305,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(936, 747);
+            this.ClientSize = new System.Drawing.Size(1074, 747);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.llShowLicenseInfo);
             this.Controls.Add(this.btnDetain);

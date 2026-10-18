@@ -43,7 +43,7 @@ namespace DataAccessLayer
                     LicenseClass = (int)reader["LicenseClass"];
                     IssueDate = (DateTime)reader["IssueDate"];
                     ExpirationDate = (DateTime)reader["ExpirationDate"];
-                    Notes = (string)reader["Notes"];
+                    Notes = reader["Notes"] != DBNull.Value ? (string)reader["Notes"] : "";
                     PaidFees = Convert.ToSingle(reader["PaidFees"]);
                     IsActive = (bool)reader["IsActive"];
                     IssueReason = (byte)reader["IssueReason"];
@@ -189,7 +189,7 @@ namespace DataAccessLayer
             command.Parameters.AddWithValue("@LicenseClass", LicenseClass);
             command.Parameters.AddWithValue("@IssueDate", IssueDate);
             command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
-            command.Parameters.AddWithValue("@Notes", Notes);
+            command.Parameters.AddWithValue("@Notes", Notes != "" ? Notes : (object)DBNull.Value);
             command.Parameters.AddWithValue("@PaidFees", PaidFees);
             command.Parameters.AddWithValue("@IsActive", IsActive);
             command.Parameters.AddWithValue("@IssueReason", IssueReason);

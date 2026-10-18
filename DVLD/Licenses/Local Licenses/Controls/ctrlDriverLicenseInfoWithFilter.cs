@@ -135,5 +135,10 @@ namespace DVLD.License.Controls
                 errorProvider1.SetError(txtLicenseID, null);
             }
         }
+
+        private void ctrlDriverLicenseInfo1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

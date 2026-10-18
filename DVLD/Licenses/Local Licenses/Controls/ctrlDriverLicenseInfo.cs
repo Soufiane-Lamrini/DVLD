@@ -68,13 +68,13 @@ namespace DVLD.License.Controls
         {
 
             lblLicenseClass.Text = _License.LicenseClassInfo.ClassName;
-            lblFullName.Text = _License.DriverInfo.PersonInfo.NationalNo;
+            lblFullName.Text = _License.DriverInfo.PersonInfo.FullName;
             lblLicenseID.Text = _License.LicenseID.ToString();
             lblNationalNo.Text = _License.DriverInfo.PersonInfo.NationalNo;
             lblGendor.Text = _License.DriverInfo.PersonInfo.Gendor == 0 ? "Male" : "Female";
             lblIssueDate.Text = clsFormat.DateToShort(_License.IssueDate);
             lblIssueReason.Text = _License.IssueReasonText;
-            lblNotes.Text = _License.Notes;
+            lblNotes.Text = _License.Notes != "" ? _License.Notes : "No Notes";
             lblIsActive.Text = _License.IsActive == true ? "Yes" : "No";
             lblDateOfBirth.Text = clsFormat.DateToShort(_License.DriverInfo.PersonInfo.DateOfBirth);
             lblDriverID.Text = _License.DriverID.ToString();
@@ -84,6 +84,9 @@ namespace DVLD.License.Controls
 
         }
 
-      
+        private void gbDriverLicenseInfo_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

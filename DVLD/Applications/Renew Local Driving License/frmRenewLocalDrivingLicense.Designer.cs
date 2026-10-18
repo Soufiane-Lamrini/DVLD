@@ -90,7 +90,7 @@
             this.label1.ForeColor = System.Drawing.Color.Maroon;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(937, 47);
+            this.label1.Size = new System.Drawing.Size(1063, 47);
             this.label1.TabIndex = 0;
             this.label1.Text = "Renew License Application";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -99,9 +99,9 @@
             // 
             this.ctrlDriverLicenseInfoWithFilter1.BackColor = System.Drawing.Color.White;
             this.ctrlDriverLicenseInfoWithFilter1.FilterEnabled = true;
-            this.ctrlDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(7, 50);
+            this.ctrlDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(7, 45);
             this.ctrlDriverLicenseInfoWithFilter1.Name = "ctrlDriverLicenseInfoWithFilter1";
-            this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(917, 475);
+            this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(1044, 475);
             this.ctrlDriverLicenseInfoWithFilter1.TabIndex = 1;
             this.ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += new System.Action<int>(this.ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected);
             // 
@@ -143,7 +143,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 500);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(896, 240);
+            this.groupBox1.Size = new System.Drawing.Size(1039, 240);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application New License Info:";
@@ -152,7 +152,7 @@
             // 
             this.lblExpirationDate.AutoSize = true;
             this.lblExpirationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpirationDate.Location = new System.Drawing.Point(687, 91);
+            this.lblExpirationDate.Location = new System.Drawing.Point(904, 94);
             this.lblExpirationDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExpirationDate.Name = "lblExpirationDate";
             this.lblExpirationDate.Size = new System.Drawing.Size(68, 25);
@@ -163,7 +163,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(443, 94);
+            this.label7.Location = new System.Drawing.Point(660, 97);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(154, 22);
@@ -173,7 +173,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::DVLD.Properties.Resources.Calendar_32;
-            this.pictureBox9.Location = new System.Drawing.Point(649, 91);
+            this.pictureBox9.Location = new System.Drawing.Point(866, 94);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(31, 26);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -216,7 +216,7 @@
             // 
             this.lblOldLicenseID.AutoSize = true;
             this.lblOldLicenseID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOldLicenseID.Location = new System.Drawing.Point(687, 60);
+            this.lblOldLicenseID.Location = new System.Drawing.Point(904, 63);
             this.lblOldLicenseID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOldLicenseID.Name = "lblOldLicenseID";
             this.lblOldLicenseID.Size = new System.Drawing.Size(74, 25);
@@ -227,7 +227,7 @@
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(687, 123);
+            this.lblUserName.Location = new System.Drawing.Point(904, 126);
             this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(68, 25);
@@ -237,7 +237,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::DVLD.Properties.Resources.money_32;
-            this.pictureBox4.Location = new System.Drawing.Point(649, 155);
+            this.pictureBox4.Location = new System.Drawing.Point(866, 158);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(31, 26);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -248,7 +248,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(443, 157);
+            this.label8.Location = new System.Drawing.Point(660, 160);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 22);
@@ -259,7 +259,7 @@
             // 
             this.lblTotalFees.AutoSize = true;
             this.lblTotalFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalFees.Location = new System.Drawing.Point(687, 155);
+            this.lblTotalFees.Location = new System.Drawing.Point(904, 158);
             this.lblTotalFees.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalFees.Name = "lblTotalFees";
             this.lblTotalFees.Size = new System.Drawing.Size(68, 25);
@@ -270,7 +270,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(443, 30);
+            this.label10.Location = new System.Drawing.Point(660, 33);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(199, 22);
@@ -281,7 +281,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(443, 126);
+            this.label11.Location = new System.Drawing.Point(660, 129);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(116, 22);
@@ -292,7 +292,7 @@
             // 
             this.lblRenewedLicenseID.AutoSize = true;
             this.lblRenewedLicenseID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRenewedLicenseID.Location = new System.Drawing.Point(687, 28);
+            this.lblRenewedLicenseID.Location = new System.Drawing.Point(904, 31);
             this.lblRenewedLicenseID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRenewedLicenseID.Name = "lblRenewedLicenseID";
             this.lblRenewedLicenseID.Size = new System.Drawing.Size(74, 25);
@@ -302,7 +302,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox5.Location = new System.Drawing.Point(649, 26);
+            this.pictureBox5.Location = new System.Drawing.Point(866, 29);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(31, 26);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -312,7 +312,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::DVLD.Properties.Resources.User_32__2;
-            this.pictureBox6.Location = new System.Drawing.Point(649, 123);
+            this.pictureBox6.Location = new System.Drawing.Point(866, 126);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(31, 26);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -322,7 +322,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox7.Location = new System.Drawing.Point(649, 58);
+            this.pictureBox7.Location = new System.Drawing.Point(866, 61);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(31, 26);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -333,7 +333,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(443, 62);
+            this.label13.Location = new System.Drawing.Point(660, 65);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(147, 22);
@@ -504,7 +504,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(538, 743);
+            this.btnClose.Location = new System.Drawing.Point(681, 743);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(173, 36);
             this.btnClose.TabIndex = 197;
@@ -519,7 +519,7 @@
             this.btnRenew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRenew.Image = global::DVLD.Properties.Resources.Renew_Driving_License_32;
             this.btnRenew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRenew.Location = new System.Drawing.Point(735, 743);
+            this.btnRenew.Location = new System.Drawing.Point(878, 743);
             this.btnRenew.Name = "btnRenew";
             this.btnRenew.Size = new System.Drawing.Size(173, 36);
             this.btnRenew.TabIndex = 198;
@@ -557,7 +557,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(937, 791);
+            this.ClientSize = new System.Drawing.Size(1063, 791);
             this.Controls.Add(this.linkShowNewLicenseInfo);
             this.Controls.Add(this.linkShowLicensesHistory);
             this.Controls.Add(this.btnRenew);

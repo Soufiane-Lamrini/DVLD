@@ -45,7 +45,7 @@ namespace DVLD_Buisness
              float PaidFees, int CreatedByUserID, int LicenseClassID)
 
         {
-            this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID; ;
+            this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID; 
             this.ApplicationID = ApplicationID;
             this.ApplicantPersonID = ApplicantPersonID;
             this.ApplicationDate = ApplicationDate;

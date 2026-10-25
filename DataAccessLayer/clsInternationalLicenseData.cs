@@ -16,43 +16,36 @@ namespace DataAccessLayer
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
-
             string query = "SELECT * FROM InternationalLicenses WHERE InternationalLicenseID = @InternationalLicenseID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@InternationalLicenseID", InternationalLicenseID);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@InternationalLicenseID", InternationalLicenseID);
 
-                    // The record was found
-                    isFound = true;
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
 
-                    ApplicationID = (int)reader["ApplicationID"];
-                    DriverID = (int)reader["DriverID"];
-                    IssuedUsingLocalLicenseID = (int)reader["IssuedUsingLocalLicenseID"];
-                    IssueDate = (DateTime)reader["IssueDate"];
-                    ExpirationDate = (DateTime)reader["ExpirationDate"];
-                    IsActive = (bool)reader["IsActive"];
-                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                        if (reader.Read())
+                        {
 
+                            // The record was found
+                            isFound = true;
+
+                            ApplicationID = (int)reader["ApplicationID"];
+                            DriverID = (int)reader["DriverID"];
+                            IssuedUsingLocalLicenseID = (int)reader["IssuedUsingLocalLicenseID"];
+                            IssueDate = (DateTime)reader["IssueDate"];
+                            ExpirationDate = (DateTime)reader["ExpirationDate"];
+                            IsActive = (bool)reader["IsActive"];
+                            CreatedByUserID = (int)reader["CreatedByUserID"];
+
+                        }
+                    }
                 }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
-                reader.Close();
-
 
             }
             catch (Exception ex)
@@ -60,11 +53,7 @@ namespace DataAccessLayer
                 //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
-            finally
-            {
-                connection.Close();
-            }
-
+           
             return isFound;
         }
 
@@ -73,7 +62,6 @@ namespace DataAccessLayer
         {
 
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = @"SELECT    InternationalLicenseID, ApplicationID,DriverID, +
                               IssuedUsingLocalLicenseID , IssueDate,
@@ -81,32 +69,25 @@ namespace DataAccessLayer
                                 from InternationalLicenses 
                                 order by IsActive, ExpirationDate desc";
 
-            SqlCommand command = new SqlCommand(query, connection);
 
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    dt.Load(reader);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        dt.Load(reader);
+                    }
                 }
-
-                reader.Close();
-
-
             }
 
             catch (Exception ex)
             {
                 // Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return dt;
@@ -118,7 +99,6 @@ namespace DataAccessLayer
         {
 
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = @"SELECT InternationalLicenseID
                       ,ApplicationID
@@ -129,23 +109,22 @@ namespace DataAccessLayer
                   FROM InternationalLicenses where DriverID = @DriverID;
                 ";
 
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@DriverID", DriverID);
 
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    dt.Load(reader);
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        dt.Load(reader);
+                    }
+
                 }
-
-                reader.Close();
-
 
             }
 
@@ -153,11 +132,7 @@ namespace DataAccessLayer
             {
                 // Console.WriteLine("Error: " + ex.Message);
             }
-            finally
-            {
-                connection.Close();
-            }
-
+          
             return dt;
 
         }
@@ -166,9 +141,6 @@ namespace DataAccessLayer
             DateTime IssueDate, DateTime ExpirationDate, bool IsActive, int CreatedByUserID)
         {
             int InternationalLicenseID = -1;
-
-            SqlConnection connection = new SqlConnection(
-                clsDataAccessSetting.connectionString);
 
             string query = @" Update InternationalLicenses 
                                set IsActive=0
@@ -180,41 +152,38 @@ namespace DataAccessLayer
                             
                                 SELECT SCOPE_IDENTITY();";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
-            command.Parameters.AddWithValue("@DriverID", DriverID);
-            command.Parameters.AddWithValue("@IssuedUsingLocalLicenseID", IssuedUsingLocalLicenseID);
-            command.Parameters.AddWithValue("@IssueDate", IssueDate);
-            command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
-            command.Parameters.AddWithValue("@IsActive", IsActive);
-            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
-
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null &&
-                    int.TryParse(result.ToString(), out int insertedID))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    InternationalLicenseID = insertedID;
+                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+                    command.Parameters.AddWithValue("@IssuedUsingLocalLicenseID", IssuedUsingLocalLicenseID);
+                    command.Parameters.AddWithValue("@IssueDate", IssueDate);
+                    command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
+                    command.Parameters.AddWithValue("@IsActive", IsActive);
+                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null &&
+                        int.TryParse(result.ToString(), out int insertedID))
+                    {
+                        InternationalLicenseID = insertedID;
+                    }
                 }
+
             }
             catch (Exception ex)
             {
                 // Pour voir l'erreur SQL pendant le développement
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
 
                 return -1;
             }
-            finally
-            {
-                connection.Close();
-            }
-
             return InternationalLicenseID;
         }
 
@@ -224,7 +193,6 @@ namespace DataAccessLayer
         {
 
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = @"Update  InternationalLicenses  
                             set ApplicationID =@ApplicationID, 
@@ -236,33 +204,30 @@ namespace DataAccessLayer
                                 CreatedByUserID = @CreatedByUserID
                             where InternationalLicenseID=@InternationalLicenseID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@InternationalLicenseID", InternationalLicenseID);
-            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
-            command.Parameters.AddWithValue("@DriverID", DriverID);
-            command.Parameters.AddWithValue("@IssuedUsingLocalLicenseID", IssuedUsingLocalLicenseID);
-            command.Parameters.AddWithValue("@IssueDate", IssueDate);
-            command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
-            command.Parameters.AddWithValue("@IsActive", IsActive);
-            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
-
-
             try
             {
-                connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@InternationalLicenseID", InternationalLicenseID);
+                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+                    command.Parameters.AddWithValue("@IssuedUsingLocalLicenseID", IssuedUsingLocalLicenseID);
+                    command.Parameters.AddWithValue("@IssueDate", IssueDate);
+                    command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
+                    command.Parameters.AddWithValue("@IsActive", IsActive);
+                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+
+                    connection.Open();
+                    rowsAffected = command.ExecuteNonQuery();
+                }              
 
             }
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
                 return false;
-            }
-
-            finally
-            {
-                connection.Close();
             }
 
             return (rowsAffected > 0);
@@ -273,7 +238,6 @@ namespace DataAccessLayer
         {
             int InternationalLicenseID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = @"  
                             SELECT Top 1 InternationalLicenseID
@@ -281,20 +245,22 @@ namespace DataAccessLayer
                             where DriverID=@DriverID and GetDate() between IssueDate and ExpirationDate 
                             order by ExpirationDate Desc;";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@DriverID", DriverID);
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    InternationalLicenseID = insertedID;
-                }
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                    {
+                        InternationalLicenseID = insertedID;
+                    }
+                }              
             }
 
             catch (Exception ex)
@@ -302,12 +268,6 @@ namespace DataAccessLayer
                 //Console.WriteLine("Error: " + ex.Message);
 
             }
-
-            finally
-            {
-                connection.Close();
-            }
-
 
             return InternationalLicenseID;
         }

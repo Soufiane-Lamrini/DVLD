@@ -11,124 +11,93 @@ namespace DVLD_DataAccess
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
             string query = "Select * from Countries Where CountryID = @CountryID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@CountryID", CountryID);
 
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@CountryID", CountryID);
 
-                    IsFound = true;
-                    CountryName = (string)reader["CountryName"];
-                   
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+
+                        if (reader.Read())
+                        {
+                            IsFound = true;
+                            CountryName = (string)reader["CountryName"];
+                        }
                 }
-                else
-                {
-                    IsFound = false;
-                }
-
-                reader.Close();
-
             }
             catch (Exception ex)
             {
 
                 IsFound = false;
             }
-            finally
-            {
-                connection.Close();
-            }
-
+          
             return IsFound;
-
         }
 
         public static bool GetCountryInfoByCountryName(string CountryName, ref int CountryID)
         {
             bool IsFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
             string query = "Select * from Countries Where CountryName = @countryName";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@countryName", CountryName);
 
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@countryName", CountryName);
 
-                    IsFound = true;
-                    CountryID = (int)reader["CountryID"];
-                   
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            IsFound = true;
+                            CountryID = (int)reader["CountryID"];
+                        }
+                    }
                 }
-                else
-                {
-                    IsFound = false;
-                }
-
-                reader.Close();
-
             }
             catch (Exception ex)
             {
 
                 IsFound = false;
             }
-            finally
-            {
-                connection.Close();
-            }
-
+           
             return IsFound;
-
         }
 
         public static DataTable GetAllCountries()
         {
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = "Select * from Countries";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                { 
                 connection.Open();
 
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        dt.Load(reader);
+                    }
                 }
-                reader.Close();
             }
             catch (Exception ex)
             {
             }
-            finally
-            {
-                connection.Close();
-            }
-
+            
             return dt;
         }
 
@@ -136,38 +105,32 @@ namespace DVLD_DataAccess
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
             string query = @"Select found = 1 from Countries 
                                 where CountryID = @CountryID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@CountryID", CountryID);
 
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    isFound = true;
-                }
-                else
-                {
-                    isFound = false;
+                    command.Parameters.AddWithValue("@CountryID", CountryID);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        isFound = true;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 isFound = false;
             }
-            finally
-            {
-                connection.Close();
-            }
+            
             return isFound;
         }
 
@@ -175,35 +138,31 @@ namespace DVLD_DataAccess
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
             string query = @"Select found = 1 from Countries 
                                 where CountryName = @countryName";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@countryName", CountryName);
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null)
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    isFound = true;
-                }
+                    command.Parameters.AddWithValue("@countryName", CountryName);
 
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        isFound = true;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 isFound = false;
             }
-            finally
-            {
-                connection.Close();
-            }
+          
             return isFound;
         }
 

@@ -18,46 +18,40 @@ namespace DataAccessLayer
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
-
             string query = "SELECT * FROM Licenses WHERE LicenseID = @LicenseID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@LicenseID", LicenseID);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@LicenseID", LicenseID);
 
-                    // The record was found
-                    isFound = true;
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
 
-                    ApplicationID = (int)reader["ApplicationID"];
-                    DriverID = (int)reader["DriverID"];
-                    LicenseClass = (int)reader["LicenseClass"];
-                    IssueDate = (DateTime)reader["IssueDate"];
-                    ExpirationDate = (DateTime)reader["ExpirationDate"];
-                    Notes = reader["Notes"] != DBNull.Value ? (string)reader["Notes"] : "";
-                    PaidFees = Convert.ToSingle(reader["PaidFees"]);
-                    IsActive = (bool)reader["IsActive"];
-                    IssueReason = (byte)reader["IssueReason"];
-                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                        if (reader.Read())
+                        {
 
+                            // The record was found
+                            isFound = true;
+
+                            ApplicationID = (int)reader["ApplicationID"];
+                            DriverID = (int)reader["DriverID"];
+                            LicenseClass = (int)reader["LicenseClass"];
+                            IssueDate = (DateTime)reader["IssueDate"];
+                            ExpirationDate = (DateTime)reader["ExpirationDate"];
+                            Notes = reader["Notes"] != DBNull.Value ? (string)reader["Notes"] : "";
+                            PaidFees = Convert.ToSingle(reader["PaidFees"]);
+                            IsActive = (bool)reader["IsActive"];
+                            IssueReason = (byte)reader["IssueReason"];
+                            CreatedByUserID = (int)reader["CreatedByUserID"];
+
+                        }
+                    }
                 }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
-                reader.Close();
-
 
             }
             catch (Exception ex)
@@ -65,11 +59,7 @@ namespace DataAccessLayer
                 //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
-            finally
-            {
-                connection.Close();
-            }
-
+          
             return isFound;
         }
 
@@ -78,26 +68,21 @@ namespace DataAccessLayer
         {
 
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = "SELECT * FROM Licenses order by LicenseID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    dt.Load(reader);
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        dt.Load(reader);
+                    }
                 }
-
-                reader.Close();
-
 
             }
 
@@ -105,11 +90,7 @@ namespace DataAccessLayer
             {
                 // Console.WriteLine("Error: " + ex.Message);
             }
-            finally
-            {
-                connection.Close();
-            }
-
+           
             return dt;
 
         }
@@ -119,7 +100,6 @@ namespace DataAccessLayer
         {
 
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = @"SELECT     
                            Licenses.LicenseID,
@@ -131,23 +111,22 @@ namespace DataAccessLayer
                             where DriverID=@DriverID
                             Order By IsActive Desc, ExpirationDate Desc";
 
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@DriverID", DriverID);
 
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    dt.Load(reader);
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        dt.Load(reader);
+                    }
+
                 }
-
-                reader.Close();
-
 
             }
 
@@ -155,11 +134,7 @@ namespace DataAccessLayer
             {
                 // Console.WriteLine("Error: " + ex.Message);
             }
-            finally
-            {
-                connection.Close();
-            }
-
+          
             return dt;
 
         }
@@ -170,9 +145,6 @@ namespace DataAccessLayer
         {
             int LicenseID = -1;
 
-            SqlConnection connection = new SqlConnection(
-                clsDataAccessSetting.connectionString);
-
             string query = @"Insert Into Licenses (ApplicationID, DriverID, LicenseClass,
                             IssueDate, ExpirationDate, Notes, PaidFees, IsActive, IssueReason,
                             CreatedByUserID)
@@ -182,44 +154,43 @@ namespace DataAccessLayer
                             
                                 SELECT SCOPE_IDENTITY();";
 
-            SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
-            command.Parameters.AddWithValue("@DriverID", DriverID);
-            command.Parameters.AddWithValue("@LicenseClass", LicenseClass);
-            command.Parameters.AddWithValue("@IssueDate", IssueDate);
-            command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
-            command.Parameters.AddWithValue("@Notes", Notes != "" ? Notes : (object)DBNull.Value);
-            command.Parameters.AddWithValue("@PaidFees", PaidFees);
-            command.Parameters.AddWithValue("@IsActive", IsActive);
-            command.Parameters.AddWithValue("@IssueReason", IssueReason);
-            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
-
-
+           
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null &&
-                    int.TryParse(result.ToString(), out int insertedID))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    LicenseID = insertedID;
+                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+                    command.Parameters.AddWithValue("@LicenseClass", LicenseClass);
+                    command.Parameters.AddWithValue("@IssueDate", IssueDate);
+                    command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
+                    command.Parameters.AddWithValue("@Notes", Notes != "" ? Notes : (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@PaidFees", PaidFees);
+                    command.Parameters.AddWithValue("@IsActive", IsActive);
+                    command.Parameters.AddWithValue("@IssueReason", IssueReason);
+                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                    {
+                        LicenseID = insertedID;
+                    }
                 }
+               
             }
             catch (Exception ex)
             {
                 // Pour voir l'erreur SQL pendant le développement
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
 
                 return -1;
             }
-            finally
-            {
-                connection.Close();
-            }
-
+           
             return LicenseID;
         }
 
@@ -229,7 +200,6 @@ namespace DataAccessLayer
         {
 
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = @"Update  Licenses  
                             set ApplicationID =@ApplicationID, 
@@ -244,36 +214,32 @@ namespace DataAccessLayer
                                 CreatedByUserID = @CreatedByUserID
                             where LicenseID=@LicenseID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@LicenseID", LicenseID);
-            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
-            command.Parameters.AddWithValue("@DriverID", DriverID);
-            command.Parameters.AddWithValue("@LicenseClass", LicenseClass);
-            command.Parameters.AddWithValue("@IssueDate", IssueDate);
-            command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
-            command.Parameters.AddWithValue("@Notes", Notes);
-            command.Parameters.AddWithValue("@PaidFees", PaidFees);
-            command.Parameters.AddWithValue("@IsActive", IsActive);
-            command.Parameters.AddWithValue("@IssueReason", IssueReason);
-            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
-
-
             try
             {
-                connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LicenseID", LicenseID);
+                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+                    command.Parameters.AddWithValue("@LicenseClass", LicenseClass);
+                    command.Parameters.AddWithValue("@IssueDate", IssueDate);
+                    command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
+                    command.Parameters.AddWithValue("@Notes", Notes);
+                    command.Parameters.AddWithValue("@PaidFees", PaidFees);
+                    command.Parameters.AddWithValue("@IsActive", IsActive);
+                    command.Parameters.AddWithValue("@IssueReason", IssueReason);
+                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+
+                    connection.Open();
+                    rowsAffected = command.ExecuteNonQuery();
+                }
 
             }
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
                 return false;
-            }
-
-            finally
-            {
-                connection.Close();
             }
 
             return (rowsAffected > 0);
@@ -284,8 +250,6 @@ namespace DataAccessLayer
         {
             int LicenseID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
             string query = @"SELECT        Licenses.LicenseID
                             FROM Licenses INNER JOIN
                                                      Drivers ON Licenses.DriverID = Drivers.DriverID
@@ -295,21 +259,26 @@ namespace DataAccessLayer
                               AND Drivers.PersonID = @PersonID
                               And IsActive=1;";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@LicenseClass", LicenseClassID);
+           
 
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    LicenseID = insertedID;
+                    command.Parameters.AddWithValue("@PersonID", PersonID);
+                    command.Parameters.AddWithValue("@LicenseClass", LicenseClassID);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                    {
+                        LicenseID = insertedID;
+                    }
                 }
+                
             }
 
             catch (Exception ex)
@@ -317,12 +286,6 @@ namespace DataAccessLayer
                 //Console.WriteLine("Error: " + ex.Message);
 
             }
-
-            finally
-            {
-                connection.Close();
-            }
-
 
             return LicenseID;
         }
@@ -331,7 +294,6 @@ namespace DataAccessLayer
         {
 
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
 
             string query = @"UPDATE Licenses
                            SET 
@@ -339,15 +301,16 @@ namespace DataAccessLayer
                              
                          WHERE LicenseID=@LicenseID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@LicenseID", LicenseID);
-
-
             try
             {
-                connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+                    connection.Open();
+                    rowsAffected = command.ExecuteNonQuery();
+                }
 
             }
             catch (Exception ex)
@@ -356,14 +319,7 @@ namespace DataAccessLayer
                 return false;
             }
 
-            finally
-            {
-                connection.Close();
-            }
-
             return (rowsAffected > 0);
         }       
-
-
     }
 }

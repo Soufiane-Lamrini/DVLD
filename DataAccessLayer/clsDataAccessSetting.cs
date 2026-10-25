@@ -1,9 +1,4 @@
-﻿
-
-
-
-
-namespace DVLD_DataAccess
+﻿namespace DVLD_DataAccess
 {
     public static class clsDataAccessSetting
     {

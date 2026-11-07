@@ -1,12 +1,13 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace DVLD_DataAccess
 {
@@ -46,7 +47,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
             
@@ -85,7 +86,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
 
@@ -119,7 +120,7 @@ namespace DVLD_DataAccess
 
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
             return dt;
 
@@ -156,7 +157,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return LocalDrivingLicenseApplicationID;
@@ -188,7 +189,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return false;
             }
 
@@ -217,9 +218,9 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-           
+
             return (rowsAffected > 0);
         }
 
@@ -257,8 +258,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return Result;
@@ -299,7 +299,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return IsFound;
@@ -341,7 +341,7 @@ namespace DVLD_DataAccess
 
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return TotalTrialsPerTest;
@@ -383,7 +383,7 @@ namespace DVLD_DataAccess
 
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return Result;

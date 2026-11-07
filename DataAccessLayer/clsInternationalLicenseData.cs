@@ -50,7 +50,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
            
@@ -87,7 +87,7 @@ namespace DataAccessLayer
 
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return dt;
@@ -130,9 +130,9 @@ namespace DataAccessLayer
 
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-          
+
             return dt;
 
         }
@@ -179,9 +179,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // Pour voir l'erreur SQL pendant le développement
-                //Console.WriteLine(ex.Message);
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return -1;
             }
             return InternationalLicenseID;
@@ -226,7 +224,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return false;
             }
 
@@ -265,8 +263,7 @@ namespace DataAccessLayer
 
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return InternationalLicenseID;

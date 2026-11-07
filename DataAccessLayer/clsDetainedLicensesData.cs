@@ -22,8 +22,6 @@ namespace DataAccessLayer
 
             string query = "SELECT * FROM DetainedLicenses WHERE DetainID = @DetainID";
 
-
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
@@ -55,7 +53,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
            
@@ -70,8 +68,6 @@ namespace DataAccessLayer
             bool isFound = false;
 
             string query = "SELECT * FROM DetainedLicenses WHERE LicenseID = @LicenseID";
-
-
 
             try
             {
@@ -106,7 +102,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
           
@@ -137,7 +133,7 @@ namespace DataAccessLayer
 
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
             return dt;
         }
@@ -189,8 +185,7 @@ namespace DataAccessLayer
 
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return DetainID;
@@ -228,7 +223,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return false;
             }
 
@@ -259,7 +254,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsDetained = false;
             }
 
@@ -296,7 +291,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return false;
             }
 

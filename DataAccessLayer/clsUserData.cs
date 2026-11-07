@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 namespace DVLD_DataAccess
@@ -10,8 +11,6 @@ namespace DVLD_DataAccess
             bool IsFound = false;
 
             string query = "Select * from Users Where UserID = @UserID";
-
-
 
             try
             {
@@ -39,10 +38,10 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsFound = false;
             }
-           
+
             return IsFound;
 
         }
@@ -81,7 +80,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsFound = false;
             }
 
@@ -120,10 +119,10 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsFound = false;
             }
-          
+
             return IsFound;
 
         }
@@ -163,7 +162,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsFound = false;
             }
 
@@ -198,14 +197,16 @@ namespace DVLD_DataAccess
                     {
                         UserID = insertedID;
                     }
+
                 }
 
             }
             catch (Exception ex)
             {
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
+                UserID = -1;
             }
-           
+
             return UserID;
         }
 
@@ -240,9 +241,9 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-           
+
             return (rowsAffected > 0);
 
         }
@@ -268,9 +269,9 @@ namespace DVLD_DataAccess
                
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-           
+
             return (rowsAffected > 0);
 
         }
@@ -302,8 +303,9 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-           
+
             return dt;
         }
 
@@ -338,7 +340,8 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                isFound = false;
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
+                UserID = -1;
             }
 
             return isFound;
@@ -377,9 +380,10 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
-        
+
             return isFound;
         }
 
@@ -414,9 +418,10 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
-          
+
             return isFound;
         }
 

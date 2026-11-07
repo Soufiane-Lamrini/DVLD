@@ -38,10 +38,10 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsFound = false;
             }
-          
+
             return IsFound;
         }
 
@@ -77,7 +77,7 @@ namespace DataAccessLayer
 
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return TestTypeID;
@@ -112,7 +112,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return (rowsAffected > 0);
@@ -139,7 +139,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return dt;

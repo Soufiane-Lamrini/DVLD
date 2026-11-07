@@ -49,7 +49,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
            
@@ -63,62 +63,49 @@ namespace DataAccessLayer
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
             string query = @"SELECT       top 1 *
                 FROM            TestAppointments
                 WHERE        (TestTypeID = @TestTypeID) 
                 AND (LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID) 
                 order by TestAppointmentID Desc";
 
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
-
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
 
-                    // The record was found
-                    isFound = true;
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
 
-                    TestAppointmentID = (int)reader["TestAppointmentID"];
-                    AppointmentDate = (DateTime)reader["AppointmentDate"];
-                    PaidFees = Convert.ToSingle(reader["PaidFees"]);
-                    CreatedByUserID = (int)reader["CreatedByUserID"];
-                    IsLocked = (bool)reader["IsLocked"];
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
 
-                    if (reader["RetakeTestApplicationID"] == DBNull.Value)
-                        RetakeTestApplicationID = -1;
-                    else
-                        RetakeTestApplicationID = (int)reader["RetakeTestApplicationID"];
+                            // The record was found
+                            isFound = true;
 
+                            TestAppointmentID = (int)reader["TestAppointmentID"];
+                            AppointmentDate = (DateTime)reader["AppointmentDate"];
+                            PaidFees = Convert.ToSingle(reader["PaidFees"]);
+                            CreatedByUserID = (int)reader["CreatedByUserID"];
+                            IsLocked = (bool)reader["IsLocked"];
 
+                            if (reader["RetakeTestApplicationID"] == DBNull.Value)
+                                RetakeTestApplicationID = -1;
+                            else
+                                RetakeTestApplicationID = (int)reader["RetakeTestApplicationID"];
+
+                        }
+                    }
                 }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
-                reader.Close();
-
-
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return isFound;
@@ -128,38 +115,32 @@ namespace DataAccessLayer
         {
 
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString);
-
             string query = @"select * from TestAppointments_View
                                   order by AppointmentDate Desc";
 
 
-            SqlCommand command = new SqlCommand(query, connection);
-
             try
             {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSetting.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    dt.Load(reader);
+
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            dt.Load(reader);
+                        }
+                    }
                 }
-
-                reader.Close();
-
-
             }
 
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return dt;
@@ -195,7 +176,7 @@ namespace DataAccessLayer
 
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return dt;
@@ -259,9 +240,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // Pour voir l'erreur SQL pendant le développement
-                //Console.WriteLine(ex.Message);
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return -1;
             }
            
@@ -317,7 +296,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return false;
             }
 
@@ -349,8 +328,7 @@ namespace DataAccessLayer
 
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return TestID;

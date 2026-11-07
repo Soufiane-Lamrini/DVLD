@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -34,7 +35,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsFound = false;
             }
           
@@ -68,7 +69,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsFound = false;
             }
            
@@ -96,8 +97,9 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-            
+
             return dt;
         }
 
@@ -128,6 +130,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
             
@@ -160,6 +163,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
           

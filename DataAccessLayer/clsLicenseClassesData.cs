@@ -1,13 +1,14 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using static DVLD_DataAccess.clsCountriesData;
-using System.Net;
-using System.Security.Policy;
 
 namespace DVLD_DataAccess
 {
@@ -21,8 +22,6 @@ namespace DVLD_DataAccess
             bool isFound = false;
 
             string query = "SELECT * FROM LicenseClasses WHERE LicenseClassID = @LicenseClassID";
-
-
 
             try
             {
@@ -53,7 +52,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
           
@@ -97,7 +96,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return isFound;
@@ -127,15 +126,13 @@ namespace DVLD_DataAccess
 
                 }
                 
-
-
             }
 
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-          
+
             return dt;
 
         }
@@ -181,8 +178,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
-
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return LicenseClassID;
@@ -226,7 +222,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return false;
             }
 

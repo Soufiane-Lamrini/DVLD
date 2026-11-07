@@ -1,6 +1,8 @@
 ﻿using Business_Layer;
+using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 
@@ -12,73 +14,37 @@ namespace DVLD.Classes
 
         public static bool RememberUsernameAndPassword(string Username, string Password)
         {
+            string keyPath = @"HKEY_CURRENT_USER\Software\DVLD";
 
             try
             {
-                string currentDirectory = System.IO.Directory.GetCurrentDirectory();
+                Registry.SetValue(keyPath, "UserName", Username, RegistryValueKind.String);
+                Registry.SetValue(keyPath, "Password", Password, RegistryValueKind.String);
 
-
-                string filePath = currentDirectory + "\\data.txt";
-
-                if (Username=="" && File.Exists(filePath)) 
-                { 
-                     File.Delete(filePath);
-                    return true;
-
-                }
-
-                string dataToSave = Username + "#//#"+Password ;
-
-                using (StreamWriter writer = new StreamWriter(filePath))
-                {
-                    writer.WriteLine(dataToSave);
-                   
-                  return true;
-                }
+                return true;
             }
             catch (Exception ex)
             {
-               MessageBox.Show ($"An error occurred: {ex.Message}");
+                MessageBox.Show($"An error occurred: {ex.Message}");
                 return false;
             }
-
         }
-
         public static bool GetStoredCredential(ref string Username, ref string Password)
         {
             try
             {
-                string currentDirectory = System.IO.Directory.GetCurrentDirectory();
+                string keyPath = @"HKEY_CURRENT_USER\Software\DVLD";
 
-                string filePath  = currentDirectory + "\\data.txt";
+                Username = Registry.GetValue(keyPath, "UserName", null) as string;
+                Password = Registry.GetValue(keyPath, "Password", null) as string;
 
-                if (File.Exists(filePath))
-                {
-                    using (StreamReader reader = new StreamReader(filePath))
-                    {
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            Console.WriteLine(line);
-                            string[] result = line.Split(new string[] { "#//#" }, StringSplitOptions.None);
-
-                            Username = result[0];
-                            Password = result[1];
-                        }
-                        return true;
-                    }
-                }
-                else
-                {
-                    return false;
-                }
+                return Username != null && Password != null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show ($"An error occurred: {ex.Message}");
-                return false;   
+                MessageBox.Show($"An error occurred: {ex.Message}");
+                return false;
             }
-
         }
     }
 }

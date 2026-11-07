@@ -46,7 +46,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 IsFound = false;
             }
 
@@ -86,7 +86,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return ApplicationID;
@@ -129,7 +129,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
 
             return (rowsAffected > 0);
@@ -157,9 +157,9 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-            
+
 
             return (rowsAffected > 0);
         }
@@ -188,9 +188,9 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
             }
-           
+
             return dt;
         }
 
@@ -217,7 +217,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 isFound = false;
             }
             
@@ -261,7 +261,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return ActiveApplicationID;
             }
            
@@ -303,7 +303,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return ActiveApplicationID;
             }
 
@@ -338,7 +338,7 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                clsDataAccessLogs.CreateExceptionLog(ex.ToString());
                 return false;
             }
 
